@@ -1,5 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
+
+/* Ainda não ta rodando no SPOJ */
+
 typedef struct node {
 	int valor;
 	struct node* next;	
