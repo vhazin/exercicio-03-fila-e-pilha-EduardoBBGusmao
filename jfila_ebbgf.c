@@ -18,8 +18,6 @@ int main() {
 	scanf("%d", &numentradas);
 	Node* lista = (Node*)malloc(sizeof(Node));
 	Fila* pos = (Fila*)malloc(sizeof(Fila));
-	if(!lista)
-		return 0;
 	
 	scanf("%d", &input);
 	
@@ -52,14 +50,12 @@ int main() {
 void crialista(Node *lista, int input, Fila* pos){
 		
 	Node *atual = (Node*)malloc(sizeof(Node));
-	if(!atual)
-		return;
+
 	atual -> valor = input;
 	atual -> next = NULL; 
 	
 	Node *last = (Node*)malloc(sizeof(Node));
-	if(!last)
-		return;
+
 	last = lista;
 	last = pos -> ultimo;
 	last -> next = atual;
@@ -69,10 +65,7 @@ void crialista(Node *lista, int input, Fila* pos){
 void deletar(Node* lista, int input, int numentradas){
 	Node *deletado = (Node*)malloc(sizeof(Node));
 	Node *anterior = (Node*)malloc(sizeof(Node));
-	if(!deletado)
-		return;
-	if(!anterior)
-		return;
+
 	deletado = lista;
 	for (int i = 0; i < numentradas; ++i){
 		if(deletado -> valor == input)
