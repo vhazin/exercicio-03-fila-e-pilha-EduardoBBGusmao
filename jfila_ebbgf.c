@@ -7,21 +7,29 @@ typedef struct node {
 	int valor;
 	struct node* next;	
 } Node;
+typedef struct fila {
+	struct node* ultimo;
+} Fila;
 void deletar();
 void crialista();
+
 int main() {
 	int numentradas, input, num_del;
 	scanf("%d", &numentradas);
 	Node* lista = (Node*)malloc(sizeof(Node));
+	Fila* pos = (Fila*)malloc(sizeof(Fila));
+	if(!lista)
+		return 0;
 	
 	scanf("%d", &input);
 	
 	lista -> valor = input;
 	lista -> next = NULL;
+	pos -> ultimo = lista; 
 	
 	for (int i = 1; i < numentradas; i++ ) {
 		scanf("%d", &input);
-		crialista(lista, input);
+		crialista(lista, input, pos);
 	}
 
 
@@ -38,27 +46,33 @@ int main() {
        printf("%d ", lista ->valor);
        lista = lista ->next;
 	}
-	
+	free(lista);	
 }
 
-void crialista(Node *lista, int input){
+void crialista(Node *lista, int input, Fila* pos){
 		
 	Node *atual = (Node*)malloc(sizeof(Node));
+	if(!atual)
+		return;
 	atual -> valor = input;
 	atual -> next = NULL; 
 	
 	Node *last = (Node*)malloc(sizeof(Node));
-	
+	if(!last)
+		return;
 	last = lista;
-	while(last->next != NULL){
-		last = last ->next;
-	}
+	last = pos -> ultimo;
 	last -> next = atual;
+	pos -> ultimo = atual;
 
 }
 void deletar(Node* lista, int input, int numentradas){
 	Node *deletado = (Node*)malloc(sizeof(Node));
 	Node *anterior = (Node*)malloc(sizeof(Node));
+	if(!deletado)
+		return;
+	if(!anterior)
+		return;
 	deletado = lista;
 	for (int i = 0; i < numentradas; ++i){
 		if(deletado -> valor == input)
